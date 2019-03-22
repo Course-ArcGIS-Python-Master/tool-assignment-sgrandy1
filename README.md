@@ -11,6 +11,7 @@ The criteria are:
 
 Help is here when you need it, just email Andy.
 
+
 # Python Tool Project
 # This tool can be used to spatially display Eastern Spadefoot Toad (Scaphiopus holbrookii) sitings in Florida. The
 # information is derived from sitings in the eastern United States from inNaturalist Observations on GBIF.
@@ -34,13 +35,14 @@ spRef = arcpy.SpatialReference(4326)  # 4326 == WGS 1984
 lyr = arcpy.MakeXYEventLayer_management(in_Table, x_coords, y_coords, out_Layer, spRef, z_coords)
 
 # Print the total rows
-print(arcpy.GetCount_management(out_Layer))
+print "Total Rows:"
+print (arcpy.GetCount_management(out_Layer))
 
 # Save to a layer file
 arcpy.CopyFeatures_management(lyr, saved_Layer)
 
 if arcpy.Exists(saved_Layer):
-    print "Created file successfully!"
+    print "Created Shapefile successfully!"
 
 # Project Tool
 # Local variables:
@@ -61,7 +63,7 @@ EasternSpadefoot_Clip_shp = "C:\\ArcGISWork\\PythonCourse\\PythonToolProject\\Ea
 # Process: Clip
 arcpy.Clip_analysis(EasternSpadefoot_Output_shp, FloridaBoundary_Project_shp, EasternSpadefoot_Clip_shp, "")
 
-print "Clip Created!"
+print "Clip created!"
 
 # Buffer Tool
 # Local variables:
@@ -71,6 +73,6 @@ EasternSpadefoot_Buffer_shp = "C:\\ArcGISWork\\PythonCourse\\PythonToolProject\\
 # Process: Buffer
 arcpy.Buffer_analysis(EasternSpadefoot_Clip_shp, EasternSpadefoot_Buffer_shp, "100 Meters", "FULL", "ROUND", "NONE", "", "PLANAR")
 
-print "Buffer created!"
+print "Toad Buffer created!"
 
 print "Tool processes completed!"
